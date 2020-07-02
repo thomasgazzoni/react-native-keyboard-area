@@ -17,13 +17,15 @@
   "keywords": [
     "react-native",
     "keyboard",
+    "keyboard-area",
     "keyboard-avoid-view"
   ],
   "scripts": {
     "test": "echo ignore",
     "build": "tsc",
     "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx ./src",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "prepublish": "yarn build"
   },
   "dependencies": {
     "@types/react-native": "0.62.16"
