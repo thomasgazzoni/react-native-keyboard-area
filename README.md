@@ -41,18 +41,18 @@ Another benefit is that the ReactNaive will **not repaint** the whole app when t
 <div style="text-align: center">
 <table>
   <tr>
-    <td width="50%">
+    <td style="text-align: center" width="50%">
         <a href=".github/before.gif"><img src=".github/before.gif" width="200" alt="Before"/></a>
     </td>
-    <td width="50%">
+    <td style="text-align: center" width="50%">
         <a href=".github/after.gif"><img src=".github/after.gif" width="200" alt="After"/></a>
     </td>
   </tr>
   <tr>
-    <td>
+    <td style="text-align: center" width="50%">
         <p><b>Before</b>: Using ReactNative KeyboardAvoidingView and adjustResize, the result is not very good, the page "jumps" when the keyboard disappear after the switch</p>
     </td>
-    <td>
+    <td style="text-align: center" width="50%">
         <p><b>After</b>: Using this library, the entire view will not move, and the keyboard area under the input will keep the same height during the switch</p>
     </td>
   </tr>
