@@ -1,0 +1,49 @@
+{
+  "name": "react-native-keyboard-area",
+  "version": "1.0.0",
+  "description": "React Native component that provides a View that always match the height of the keyboard",
+  "author": "Thomas Gazzoni",
+  "bugs": {
+    "url": "https://github.com/thomasgazzoni/react-native-keyboard-area/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thomasgazzoni/react-native-keyboard-area.git"
+  },
+  "homepage": "https://github.com/thomasgazzoni/react-native-keyboard-area",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "react-native",
+    "keyboard",
+    "keyboard-avoid-view"
+  ],
+  "scripts": {
+    "test": "echo ignore",
+    "build": "tsc",
+    "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx ./src",
+    "semantic-release": "semantic-release"
+  },
+  "dependencies": {
+    "@types/react-native": "0.62.16"
+  },
+  "devDependencies": {
+    "@react-native-community/eslint-config": "2.0.0",
+    "@typescript-eslint/eslint-plugin": "3.5.0",
+    "@typescript-eslint/parser": "3.5.0",
+    "cz-conventional-changelog": "3.2.0",
+    "eslint": "7.3.1",
+    "semantic-release": "17.1.1",
+    "typescript": "3.9.6"
+  },
+  "peerDependencies": {
+    "react": ">=16.0.0",
+    "react-native": ">=0.59.5"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
