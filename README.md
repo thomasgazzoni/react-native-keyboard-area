@@ -2,13 +2,13 @@
 
 ## Introduction
 
-This library will address those problems:
+This library will address these problems:
 
-- When set **windowSoftInputMode** to `adjustNothing`, the React Native Keyboard events, `keyboardDidHide` and `keyboardDidShow`, will stop working ([see issue #2852](https://github.com/facebook/react-native/issues/2852#issuecomment-141712317))
+- When set **windowSoftInputMode** to `adjustNothing`, the React Native Keyboard events, `keyboardDidHide` and `keyboardDidShow`, will stop working ([see issue #2852](https://github.com/facebook/react-native/issues/2852#issuecomment-141712317)).
 
-- When Keyboard appear the entire app view will **move up** (iOS and Android)
+- When Keyboard appear the entire app content will **move up** (iOS and Android).
 
-- For chat application we need to keep the bottom text input in the same position when dismiss the Keyboard and show some action menu
+- For chat application than needs to keep the bottom text input in the same position when dismiss the Keyboard and show some actions, the switch will not be that smooth.
 
 ## Getting started
 
@@ -30,28 +30,30 @@ But sometimes we don't need to whole app to move up, the most common example is 
 
 ## Here comes this Library
 
-This library solve the problem by creating a wrapper component `KeyboardArea`, this component will adjust his height then the keyboard appear or disappear.
+This library **solve the problem by creating** a wrapper component `KeyboardArea`, this component will adjust his height then the keyboard appear or disappear.
 
-In addition is also possible to control the state with `isOpen` props or with the exposed `open()` and `close()` methods.
+In addition is also possible **to control** the state with `isOpen` props or with the exposed `open()` and `close()` methods.
 
-### Example
+Another benefit is that the ReactNaive will **not repaint** the whole app when the keyboard appears since main view will not change is size.
+
+### Real world example, before and after
 
 <div style="text-align: center">
 <table>
   <tr>
-    <td style="text-align: center; width: 50%;">
+    <td width="50%">
         <a href=".github/before.gif"><img src=".github/before.gif" width="200" alt="Before"/></a>
     </td>
-    <td style="text-align: center; width: 50%;">
+    <td width="50%">
         <a href=".github/after.gif"><img src=".github/after.gif" width="200" alt="After"/></a>
     </td>
   </tr>
   <tr>
-    <td style="text-align: center; width: 50%;">
-        <p>**Before**: Using ReactNative KeyboardAvoidingView and adjustResize, the result is not very good, the page "jumps" when the keyboard appear/disappear.</p>
+    <td>
+        <p><b>Before</b>: Using ReactNative KeyboardAvoidingView and adjustResize, the result is not very good, the page "jumps" when the keyboard disappear after the switch</p>
     </td>
-    <td style="text-align: center; width: 50%;">
-        <p>**After**: Using this library, the entire view will not move, and the keyboard area under the input will stay the same</p>
+    <td>
+        <p><b>After</b>: Using this library, the entire view will not move, and the keyboard area under the input will keep the same height during the switch</p>
     </td>
   </tr>
 </table>
@@ -59,7 +61,7 @@ In addition is also possible to control the state with `isOpen` props or with th
 
 ## How it works?
 
-This library have some native code to notify, through an event named "KeyboardSizeChanges", the `KeyboardArea` component when the keyboard height changes.
+This library have some iOS and Android native code to notify, through an event named `KeyboardSizeChanges`, the `KeyboardArea` component when the keyboard height changes.
 
 - On iOS we just use the `UIResponder` keyboardWillShowNotification and keyboardWillHideNotification to then emit the event with the current height.
 
@@ -67,7 +69,7 @@ This library have some native code to notify, through an event named "KeyboardSi
 
 ## Usage
 
-Most of the logic in inside the `KeyboardArea` component, we just need to wrap the content we want to show when the keyboard disappear and set the **isOpen** props when we need to show, in this case, the **ChatActionsInput** component.
+Most of the logic is inside the `KeyboardArea` component, we just need to wrap the content we want to show when the keyboard disappear and then set the **isOpen** props when we need to show, in follow example case, the **ChatActionsInput** component.
 
 ** this is a simplified version of the above screenshots **
 
@@ -110,8 +112,6 @@ render() {
         </PageContent>
     );
 }
-
-
 ```
 
 ## Android notes
@@ -144,7 +144,6 @@ componentWillUnmount() {
   navigation.removeListener('blur', this.componentDidExit);
   navigation.removeListener('focus', this.componentDidEnter);
 }
-
 ```
 
 ### Credits
