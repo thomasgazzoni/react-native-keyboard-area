@@ -5,7 +5,7 @@ import {
   Platform,
 } from 'react-native';
 
-const { Keyboard: Keyboard } = NativeModules;
+const { RNKeyboard: Keyboard } = NativeModules;
 
 const SOFT_INPUT_MODES = {
   SOFT_INPUT_ADJUST_NOTHING: Keyboard.SOFT_INPUT_ADJUST_NOTHING,

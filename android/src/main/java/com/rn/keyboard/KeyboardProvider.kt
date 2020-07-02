@@ -60,7 +60,7 @@ class KeyboardProvider(private val activity: Activity) : PopupWindow(activity) {
     }
 
     fun removeKeyboardListener() {
-        keyboardListeners.removeAll()
+        keyboardListeners.clear()
     }
 
     private fun getGlobalLayoutListener() = ViewTreeObserver.OnGlobalLayoutListener {

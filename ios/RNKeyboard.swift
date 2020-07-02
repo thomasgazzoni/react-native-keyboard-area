@@ -46,7 +46,7 @@ class RNKeyboard: RCTEventEmitter {
     }
 
     override func constantsToExport() -> [AnyHashable : Any]!  {
-        return []
+        return ["KeyboardSizeChanges": 0]
     }
 
     override static func requiresMainQueueSetup() -> Bool {

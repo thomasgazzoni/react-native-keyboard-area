@@ -1,2 +1,2 @@
 export * from './module';
-export * from './KeyboardSpacer';
+export * from './KeyboardArea';
