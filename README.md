@@ -1,7 +1,5 @@
 # react-native-keyboard-area
 
-## Introduction
-
 This library will address these problems:
 
 - When set **windowSoftInputMode** to `adjustNothing`, the React Native Keyboard events, `keyboardDidHide` and `keyboardDidShow`, will stop working ([see issue #2852](https://github.com/facebook/react-native/issues/2852#issuecomment-141712317)).
@@ -36,7 +34,7 @@ In addition is also possible **to control** the state with `isOpen` props or wit
 
 Another benefit is that the ReactNaive will **not repaint** the whole app when the keyboard appears since main view will not change is size.
 
-### Real world example, before and after
+### Real world example: before and after
 
 <div style="text-align: center">
 <table>
@@ -116,7 +114,7 @@ render() {
 
 ## Android notes
 
-Since on android we might want use adjustResize for the others page, we can use this library `setWindowSoftInputMode` to dynamically change the Input mode only for the page then we need, for example:
+Since on android we might want use adjustResize for the others page, we can use this library `setWindowSoftInputMode` to dynamically change the SoftInput mode only for the pages that we need, for example:
 
 ```tsx
 import { RNKeyboard, SoftInputMode } from 'react-native-keyboard-area';
@@ -148,4 +146,4 @@ componentWillUnmount() {
 
 ### Credits
 
-For Android all credits goes to [Cristian Holdunu](https://github.com/Crysis21) and [Siebe Brouwer](https://github.com/siebeprojects) for the `PopupWindow` idea implementation to calculate the keyboard height, I just port it in React Native module system.
+For Android all credits goes to [Cristian Holdunu](https://github.com/Crysis21) and [Siebe Brouwer](https://github.com/siebeprojects) for the `PopupWindow` idea implementation and to calculate the keyboard height, I just port it in the React Native module system.
