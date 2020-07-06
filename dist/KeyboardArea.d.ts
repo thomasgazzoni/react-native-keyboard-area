@@ -15,9 +15,14 @@ interface IProps {
     /**
      * Until the keyboard shows once, we don't know it real height,
      * so we need a initial default height
-     * (Default: 270)
+     * (Default: 250)
      */
     initialHeight?: number;
+    /**
+     * Minimum height for manually open view
+     * (Default: 250)
+     */
+    minHeight?: number;
     /**
      * Event fired when keyboard height changes
      */

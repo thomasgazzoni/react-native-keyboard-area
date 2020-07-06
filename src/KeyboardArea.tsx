@@ -39,9 +39,14 @@ interface IProps {
   /**
    * Until the keyboard shows once, we don't know it real height,
    * so we need a initial default height
-   * (Default: 270)
+   * (Default: 250)
    */
   initialHeight?: number;
+  /**
+   * Minimum height for manually open view
+   * (Default: 250)
+   */
+  minHeight?: number;
   /**
    * Event fired when keyboard height changes
    */
@@ -56,7 +61,14 @@ export type KeyboardAreaRef = {
 
 export const KeyboardArea = forwardRef<KeyboardAreaRef, IProps>(
   (
-    { style, children, isOpen: externalOpen, initialHeight = 270, onChange },
+    {
+      style,
+      children,
+      isOpen: externalOpen,
+      initialHeight = 250,
+      minHeight = 250,
+      onChange,
+    },
     ref,
   ) => {
     const isOpen = useRef(false);
@@ -89,7 +101,7 @@ export const KeyboardArea = forwardRef<KeyboardAreaRef, IProps>(
     useEffect(() => {
       const keyboardHeightChanged = (height: number) => {
         if (height > 0 && height !== keyboardHeight.current) {
-          keyboardHeight.current = height;
+          keyboardHeight.current = height > minHeight ? height : minHeight;
         }
         const needToOpen = forceOpen.current || height > 0;
         if (needToOpen) {
