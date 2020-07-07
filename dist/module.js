@@ -1,22 +1,22 @@
 import { PixelRatio, NativeModules, NativeEventEmitter, Platform, } from 'react-native';
-const { RNKeyboard: Keyboard } = NativeModules;
+const { RNKeyboard: KBModule } = NativeModules;
 const SOFT_INPUT_MODES = {
-    SOFT_INPUT_ADJUST_NOTHING: Keyboard.SOFT_INPUT_ADJUST_NOTHING,
-    SOFT_INPUT_ADJUST_PAN: Keyboard.SOFT_INPUT_ADJUST_PAN,
-    SOFT_INPUT_ADJUST_RESIZE: Keyboard.SOFT_INPUT_ADJUST_RESIZE,
-    SOFT_INPUT_ADJUST_UNSPECIFIED: Keyboard.SOFT_INPUT_ADJUST_UNSPECIFIED,
-    SOFT_INPUT_IS_FORWARD_NAVIGATION: Keyboard.SOFT_INPUT_IS_FORWARD_NAVIGATION,
-    SOFT_INPUT_MASK_ADJUST: Keyboard.SOFT_INPUT_MASK_ADJUST,
-    SOFT_INPUT_MASK_STATE: Keyboard.SOFT_INPUT_MASK_STATE,
-    SOFT_INPUT_MODE_CHANGED: Keyboard.SOFT_INPUT_MODE_CHANGED,
-    SOFT_INPUT_STATE_ALWAYS_HIDDEN: Keyboard.SOFT_INPUT_STATE_ALWAYS_HIDDEN,
-    SOFT_INPUT_STATE_ALWAYS_VISIBLE: Keyboard.SOFT_INPUT_STATE_ALWAYS_VISIBLE,
-    SOFT_INPUT_STATE_HIDDEN: Keyboard.SOFT_INPUT_STATE_HIDDEN,
-    SOFT_INPUT_STATE_UNCHANGED: Keyboard.SOFT_INPUT_STATE_UNCHANGED,
-    SOFT_INPUT_STATE_UNSPECIFIED: Keyboard.SOFT_INPUT_STATE_UNSPECIFIED,
-    SOFT_INPUT_STATE_VISIBLE: Keyboard.SOFT_INPUT_STATE_VISIBLE,
+    SOFT_INPUT_ADJUST_NOTHING: KBModule.SOFT_INPUT_ADJUST_NOTHING,
+    SOFT_INPUT_ADJUST_PAN: KBModule.SOFT_INPUT_ADJUST_PAN,
+    SOFT_INPUT_ADJUST_RESIZE: KBModule.SOFT_INPUT_ADJUST_RESIZE,
+    SOFT_INPUT_ADJUST_UNSPECIFIED: KBModule.SOFT_INPUT_ADJUST_UNSPECIFIED,
+    SOFT_INPUT_IS_FORWARD_NAVIGATION: KBModule.SOFT_INPUT_IS_FORWARD_NAVIGATION,
+    SOFT_INPUT_MASK_ADJUST: KBModule.SOFT_INPUT_MASK_ADJUST,
+    SOFT_INPUT_MASK_STATE: KBModule.SOFT_INPUT_MASK_STATE,
+    SOFT_INPUT_MODE_CHANGED: KBModule.SOFT_INPUT_MODE_CHANGED,
+    SOFT_INPUT_STATE_ALWAYS_HIDDEN: KBModule.SOFT_INPUT_STATE_ALWAYS_HIDDEN,
+    SOFT_INPUT_STATE_ALWAYS_VISIBLE: KBModule.SOFT_INPUT_STATE_ALWAYS_VISIBLE,
+    SOFT_INPUT_STATE_HIDDEN: KBModule.SOFT_INPUT_STATE_HIDDEN,
+    SOFT_INPUT_STATE_UNCHANGED: KBModule.SOFT_INPUT_STATE_UNCHANGED,
+    SOFT_INPUT_STATE_UNSPECIFIED: KBModule.SOFT_INPUT_STATE_UNSPECIFIED,
+    SOFT_INPUT_STATE_VISIBLE: KBModule.SOFT_INPUT_STATE_VISIBLE,
 };
-const eventEmitter = new NativeEventEmitter(Keyboard);
+const eventEmitter = new NativeEventEmitter(KBModule);
 /**
  * Native Event name, emitted from Android and iOS
  */
@@ -56,7 +56,7 @@ export class RNKeyboard {
      * @param mode See SoftInputMode for all the options
      */
     static setWindowSoftInputMode(mode) {
-        return Keyboard.setWindowSoftInputMode(SOFT_INPUT_MODES[mode]);
+        return KBModule.setWindowSoftInputMode(SOFT_INPUT_MODES[mode]);
     }
     /**
      * Invoke the provided callback every time the keyboard height changes (when it show/hide)
@@ -65,7 +65,7 @@ export class RNKeyboard {
      */
     static addKeyboardListener(callback) {
         if (!RNKeyboard.isInitialized) {
-            Keyboard.startKeyboardListener();
+            KBModule.startKeyboardListener();
             eventEmitter.addListener(KEYBOARD_SIZE_EVENT_NAME, RNKeyboard.keyboardListener);
             RNKeyboard.isInitialized = true;
         }
