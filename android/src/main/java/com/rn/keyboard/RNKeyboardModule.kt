@@ -23,7 +23,6 @@ class RNKeyboardModule(private val reactContext: ReactApplicationContext) : Reac
 
     @ReactMethod
     fun startKeyboardListener() {
-
         try {
             UiThreadUtil.runOnUiThread {
                 val mActivity = currentActivity

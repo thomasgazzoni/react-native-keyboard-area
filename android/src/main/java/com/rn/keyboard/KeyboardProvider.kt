@@ -69,7 +69,7 @@ class KeyboardProvider(private val activity: Activity) : PopupWindow(activity) {
 
     private fun computeKeyboardState() {
         val screenSize = Point()
-        activity.windowManager.defaultDisplay.getSize(screenSize)
+        activity.windowManager.defaultDisplay.getRealSize(screenSize)
         val rect = Rect()
         contentView.getWindowVisibleDisplayFrame(rect)
         val orientation = activity.resources.configuration.orientation
