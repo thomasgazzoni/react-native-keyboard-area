@@ -1,12 +1,14 @@
 package com.rn.keyboard
 
 import android.app.Activity
+import android.graphics.Point
 import android.graphics.Rect
 import android.view.Gravity
 import android.view.View
 import android.view.ViewTreeObserver
 import android.view.WindowManager
 import android.widget.PopupWindow
+import java.util.*
 
 object KeyboardInfo {
     const val HEIGHT_NOT_COMPUTED = -1
@@ -66,14 +68,13 @@ class KeyboardProvider(private val activity: Activity) : PopupWindow(activity) {
     }
 
     private fun computeKeyboardState() {
+        val screenSize = Point()
+        activity.windowManager.defaultDisplay.getSize(screenSize)
         val rect = Rect()
-        contentView.rootView.getWindowVisibleDisplayFrame(rect)
+        resizableView.getWindowVisibleDisplayFrame(rect)
         val orientation = activity.resources.configuration.orientation
-        
-        if (rect.bottom > heightMax) {
-            heightMax = rect.bottom;
-        }
-        val keyboardHeight = heightMax - rect.bottom
+
+        val keyboardHeight = screenSize.y + topCutoutHeight - rect.bottom
         KeyboardInfo.keyboardState = if (keyboardHeight > 0) KeyboardInfo.STATE_OPENED else KeyboardInfo.STATE_CLOSED
         if (keyboardHeight > 0) {
             KeyboardInfo.keyboardHeight = keyboardHeight
@@ -83,6 +84,28 @@ class KeyboardProvider(private val activity: Activity) : PopupWindow(activity) {
         }
         lastKeyboardHeight = keyboardHeight
     }
+
+    private val topCutoutHeight: Int
+        get() {
+            val decorView = activity.window.decorView ?: return 0
+            var cutOffHeight = 0
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                val windowInsets = decorView.rootWindowInsets
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
+                    val displayCutout = windowInsets.displayCutout
+                    if (displayCutout != null) {
+                        val list = displayCutout.boundingRects
+                        for (rect in list) {
+                            if (rect.top == 0) {
+                                cutOffHeight += rect.bottom - rect.top
+                            }
+                        }
+                    }
+                }
+
+            }
+            return cutOffHeight
+        }
 
     private fun notifyKeyboardHeightChanged(height: Int, orientation: Int) {
         keyboardListeners.forEach {
