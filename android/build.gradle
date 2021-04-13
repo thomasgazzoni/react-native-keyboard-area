@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        kotlinVersion = '1.3.11'
+        kotlinVersion = '1.3.72'
         androidToolsVersion = '3.2.1'
     }
 
@@ -23,7 +23,7 @@ repositories {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
         minSdkVersion 19
