@@ -77,6 +77,7 @@ export class RNKeyboard {
      */
     static removeKeyboardListener(callback) {
         RNKeyboard.callbacks = RNKeyboard.callbacks.filter(cb => cb !== callback);
+        RNKeyboard.isInitialized = false;
     }
 }
 RNKeyboard.isInitialized = false;
